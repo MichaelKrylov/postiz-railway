@@ -24,7 +24,7 @@ RUN pnpm run prisma-generate
 RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
 
 # Copy nginx config if exists
-COPY var/docker/nginx.conf /etc/nginx/nginx.conf 2>/dev/null || echo "No nginx config found"
+RUN if [ -f var/docker/nginx.conf ]; then cp var/docker/nginx.conf /etc/nginx/nginx.conf; else echo "No nginx config found"; fi
 
 # Expose port
 EXPOSE 5000
