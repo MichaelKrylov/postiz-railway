@@ -7,5 +7,5 @@ EXPOSE 5000
 # Environment variables will be set by Railway
 ENV PORT=5000
 
-# Start the application using the correct command
-CMD ["node", "dist/apps/backend/main.js"]
+# Start the application - let's use the default entrypoint
+CMD ["sh", "-c", "npm run pm2"]
