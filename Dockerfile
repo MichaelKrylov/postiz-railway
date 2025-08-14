@@ -15,7 +15,7 @@ COPY apps/ ./apps/
 COPY libraries/ ./libraries/
 
 # Install dependencies
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --no-frozen-lockfile
 
 # Generate Prisma client
 RUN pnpm run prisma-generate
