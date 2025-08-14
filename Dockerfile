@@ -1,28 +1,11 @@
-FROM node:20-alpine
+# Use the official Postiz image
+FROM ghcr.io/gitroomhq/postiz-app:latest
 
-# Install system dependencies
-RUN apk add --no-cache g++ make python3 bash
+# Expose port 5000 (default for Postiz)
+EXPOSE 5000
 
-# Install pnpm globally
-RUN npm install -g pnpm@10.6.1
+# Environment variables will be set by Railway
+ENV PORT=5000
 
-# Set working directory
-WORKDIR /app
-
-# Copy all files
-COPY . .
-
-# Install dependencies
-RUN pnpm install
-
-# Generate Prisma client
-RUN pnpm run prisma-generate
-
-# Build the application
-RUN pnpm run build
-
-# Expose port
-EXPOSE 3000
-
-# Start in development mode
-CMD ["pnpm", "dev"]
+# Start the application
+CMD ["npm", "start"]
